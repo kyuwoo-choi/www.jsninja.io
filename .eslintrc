@@ -1,0 +1,13 @@
+{
+  "extends": ["tui"],
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module"
+  },
+  "env": {
+    "es6": true
+  },
+  "rules": {
+    "indent": ["error", 2]
+  }
+}
