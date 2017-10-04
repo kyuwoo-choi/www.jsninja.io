@@ -1,9 +1,9 @@
 const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const IS_PRODUCTION = process.argv.indexOf('-p') >= 0;
 const DIST_DIR_NAME = 'dist';
 const DIST_PATH = path.join(__dirname, DIST_DIR_NAME);
-const DIST_FILE = `jsninja${IS_PRODUCTION ? '.min' : ''}.js`;
+const DIST_FILE = `jsninja.js`;
 const PUBLIC_PATH = `http://localhost:8080/${DIST_DIR_NAME}/`;
 
 module.exports = {
@@ -30,6 +30,9 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new CleanWebpackPlugin([DIST_DIR_NAME])
+  ],
   devtool: 'inline-source-map',
   devServer: {
     publicPath: PUBLIC_PATH
