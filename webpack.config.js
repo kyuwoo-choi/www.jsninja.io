@@ -7,26 +7,32 @@ const DIST_FILE = `jsninja.js`;
 const PUBLIC_PATH = `http://localhost:8080/${DIST_DIR_NAME}/`;
 
 module.exports = {
-  entry: './app/index.js',
+  entry: './app/index.ts',
   output: {
     path: DIST_PATH,
     filename: DIST_FILE
   },
+  resolve: {
+    extensions: ['.ts', '.js']
+  },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        options: {
-          babelrc: true
-        }
+        test: /\.ts$/,
+        use: [{
+          loader: 'babel-loader',
+          options: {
+            babelrc: true
+          }
+        }, {
+          loader: 'awesome-typescript-loader'
+        }]
       }, {
-        test: /\.js$/,
+        test: /\.ts$/,
         enforce: 'pre',
-        loader: 'eslint-loader',
-        options: {
-          configFile: './.eslintrc'
-        }
+        use: [{
+          loader: 'tslint-loader'
+        }]
       }
     ]
   },
@@ -38,4 +44,3 @@ module.exports = {
     publicPath: PUBLIC_PATH
   }
 };
-

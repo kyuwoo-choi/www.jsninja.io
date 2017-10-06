@@ -1,2 +1,1 @@
 import './components/js-ninja';
-
