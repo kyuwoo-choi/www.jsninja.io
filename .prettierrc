@@ -1,0 +1,5 @@
+{
+  "singleQuote": true,
+  "tailingComma": "all",
+  "parser": "typescript"
+}

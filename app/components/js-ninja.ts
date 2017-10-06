@@ -1,4 +1,3 @@
-
 class JSNinja extends HTMLElement {
   public static readonly is: string = 'js-ninja';
 
