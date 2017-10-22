@@ -6,9 +6,11 @@
   "scripts": {
     "build": "webpack",
     "build:product": "webpack -p",
-    "serve": "webpack-dev-server"
+    "serve": "webpack-dev-server",
+    "lint": "tslint"
   },
-  "author": "KyuWoo Choi <kyuwoo.choi@gmail.com> (https://medium.com/kyuwoo.choi)",
+  "author":
+    "KyuWoo Choi <kyuwoo.choi@gmail.com> (https://medium.com/kyuwoo.choi)",
   "license": "MIT",
   "devDependencies": {
     "awesome-typescript-loader": "^3.2.3",
@@ -25,6 +27,11 @@
     "webpack-dev-server": "^2.9.1"
   },
   "dependencies": {
-    "@webcomponents/webcomponentsjs": "^1.0.14"
+    "@webcomponents/webcomponentsjs": "^1.0.14",
+    "fuzzysort": "^1.0.1",
+    "lit-html": "^0.7.1",
+    "redux": "^3.7.2",
+    "redux-saga": "^0.15.6",
+    "regenerator-runtime": "^0.11.0"
   }
 }
