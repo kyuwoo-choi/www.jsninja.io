@@ -1,6 +1,6 @@
 import { goAsync, highlight } from 'fuzzysort';
 
-import javascriptMDN from '../jsvascript';
+import javascriptMDN from '../javascript';
 import ISearcher from './ISearcher';
 import { ISearchResult } from './IState';
 

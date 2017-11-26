@@ -1,4 +1,4 @@
-import { html, render, directive } from 'lit-html';
+import { directive, html, render } from 'lit-html';
 
 class ListItem extends HTMLElement {
   public static readonly is: string = 'list-item';
@@ -6,8 +6,6 @@ class ListItem extends HTMLElement {
   static get observedAttributes() {
     return ['name', 'url', 'text'];
   }
-
-  private root: ShadowRoot;
 
   private name: string;
 
@@ -18,10 +16,14 @@ class ListItem extends HTMLElement {
   constructor() {
     super();
 
-    this.root = this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: 'open' });
   }
 
-  attributeChangedCallback(attr: string, oldValue: string, newValue: string) {
+  public attributeChangedCallback(
+    attr: string,
+    oldValue: string,
+    newValue: string
+  ) {
     switch (attr) {
       case 'name':
         this.name = newValue;
@@ -42,14 +44,25 @@ class ListItem extends HTMLElement {
     span.innerHTML = this.text;
     render(
       html`
+        <style>
+          :host:focus {
+            background-color: red;
+            border: solid 2px black;
+          }
+          :host {
+            height: 30px;
+          }
+        </style>
         <div>
           <a href="${this.url}">
           ${span}
           </a>
         </div>
       `,
-      this.root
+      this.shadowRoot
     );
+
+    this.addEventListener('focus', el => console.log(el));
   }
 }
 

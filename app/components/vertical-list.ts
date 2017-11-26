@@ -3,12 +3,10 @@ import { html, render } from 'lit-html';
 class VerticalList extends HTMLElement {
   public static readonly is: string = 'vertical-list';
 
-  private root: ShadowRoot;
-
   constructor() {
     super();
 
-    this.root = this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: 'open' });
     this.render();
   }
 
@@ -16,12 +14,22 @@ class VerticalList extends HTMLElement {
     render(
       html`
         <div>
-          <slot></slot>
+          <slot id="items"></slot>
         </div>
       `,
-      this.root
+      this.shadowRoot
     );
+
+    const slot = this.shadowRoot.getElementById('items');
+    slot.addEventListener('slotchange', () => {
+      const items = this.querySelectorAll('list-item');
+      console.log(items);
+    });
+    (window as any).test = this;
+    console.log(slot);
   }
+
+  public select(index: number): void {}
 }
 
 customElements.define(VerticalList.is, VerticalList);

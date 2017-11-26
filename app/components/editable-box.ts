@@ -1,14 +1,12 @@
 import { html, render } from 'lit-html';
 
 class EditableBox extends HTMLElement {
-  protected root: ShadowRoot;
-
   protected editable: HTMLElement;
 
   constructor() {
     super();
 
-    this.root = this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: 'open' });
     this.render();
     this.initEvent();
   }
@@ -26,9 +24,9 @@ class EditableBox extends HTMLElement {
       html`
         <div contenteditable="true" />
       `,
-      this.root
+      this.shadowRoot
     );
-    this.editable = this.root.querySelector('div');
+    this.editable = this.shadowRoot.querySelector('div');
     this.setAttribute('role', 'searchbox');
   }
 

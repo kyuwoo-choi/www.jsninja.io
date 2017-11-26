@@ -16,8 +16,6 @@ import SearchResult from './search-result';
 class JSNinja extends HTMLElement {
   public static readonly is: string = 'js-ninja';
 
-  private root: ShadowRoot;
-
   private searchBox: SearchBox;
 
   private searchResult: SearchResult;
@@ -27,7 +25,7 @@ class JSNinja extends HTMLElement {
   constructor() {
     super();
 
-    this.root = this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: 'open' });
 
     const sagaMiddleware = createSagaMiddleware();
     this.store = createStore<IState>(reducers, applyMiddleware(sagaMiddleware));
@@ -39,15 +37,15 @@ class JSNinja extends HTMLElement {
   protected render(store: Store<IState>): void {
     render(
       html`
-<search-box></search-box>
-<search-result></search-result>
-`,
-      this.root
+        <search-box></search-box>
+        <search-result></search-result>
+    `,
+      this.shadowRoot
     );
 
-    this.searchBox = this.root.querySelector('search-box') as SearchBox;
+    this.searchBox = this.shadowRoot.querySelector('search-box') as SearchBox;
     this.searchBox.setStore(store);
-    this.searchResult = this.root.querySelector(
+    this.searchResult = this.shadowRoot.querySelector(
       'search-result'
     ) as SearchResult;
     this.searchResult.setStore(store);
